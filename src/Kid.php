@@ -1,8 +1,8 @@
 <?php
 
-namespace Kid;
+namespace App;
 
-class Kiddy
+class Kid
 {
     private $name;
     private $age;
