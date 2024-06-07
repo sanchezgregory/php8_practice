@@ -14,11 +14,21 @@ function fetchJsonData($pokemonUrl) {
     return $data;
 }
 
-class Pokemon {
-    public $name;
-    public $weight;
-    public $abilities = [];
-    public $moves = [];
+interface PokemonContract {
+    public function getName();
+
+    public function getWeight();
+
+    public function getAbilities();
+
+    public function getMoves();
+}
+
+class Pokemon implements PokemonContract{
+    private $name;
+    private $weight;
+    private $abilities = [];
+    private $moves = [];
     public function __construct($data)
     {
         $this->name = $data['name'];
@@ -30,8 +40,27 @@ class Pokemon {
             $this->moves[] = $move['move']['name'];
         }
     }
-}
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    public function getAbilities()
+    {
+        return $this->abilities;
+    }
+
+    public function getMoves()
+    {
+        return $this->moves;
+    }
+}
 $pokemonUrl = 'https://pokeapi.co/api/v2/pokemon/25';
 $pokemonData = fetchJsonData($pokemonUrl);
 
@@ -40,15 +69,14 @@ if ($pokemonData === null) {
     exit;
 }
 $pokemon = new Pokemon($pokemonData);
-
-echo "\n$pokemon->name";
-echo "\n$pokemon->weight";
+echo $pokemon->getName();
+echo $pokemon->getWeight();
 echo "\n [ Abilities ] ";
-foreach ($pokemon->abilities as $i => $ability) {
+foreach ($pokemon->getAbilities() as $i => $ability) {
     echo "\n$i  $ability";
 }
 echo "\n [ Moves ] ";
-foreach ($pokemon->moves as $i => $move) {
+foreach ($pokemon->getMoves() as $i => $move) {
     echo "\n$i  $move";
 }
 echo "\n";
