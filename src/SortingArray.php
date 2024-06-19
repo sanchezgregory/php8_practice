@@ -2,6 +2,80 @@
 
 namespace App;
 
+
+$arr = [
+  [
+      'cost'=>10,
+      'value'=>10,
+      'price'=>10
+  ],
+    [
+        'cost'=>9,
+        'value'=>8,
+        'price'=>7
+    ],
+    [
+        'cost'=>5,
+        'value'=>6,
+        'price'=>7
+    ],
+    [
+        'cost'=>9,
+        'value'=>3,
+        'price'=>1
+    ],
+    [
+        'cost'=>1,
+        'value'=>1,
+        'price'=>1
+    ],
+];
+
+function compare($a, $b) {
+    if ($a['price'] < $b['price']) return -1;
+    if ($a['price'] > $b['price']) return 1;
+    if ($a['value'] < $b['value']) return -1;
+    if ($a['value'] > $b['value']) return 1;
+    if ($a['cost'] < $b['cost']) return -1;
+    if ($a['cost'] > $b['cost']) return 1;
+    return 0;
+}
+
+usort($arr, 'App\compare');
+
+print_r($arr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+
+
+
+
+
 class SortingArray
 {
 
@@ -27,3 +101,4 @@ class SortingArray
 
 $a = new SortingArray();
 print_r($a->getSortedArray());
+*/
