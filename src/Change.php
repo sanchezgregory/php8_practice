@@ -26,6 +26,7 @@ class ConcreteChangeEuro extends ExpendMachine {
 
 }
 
-
+$values = $_GET;
+$value = explode(',', $values['val']);
 $obj = new ConcreteChangeDollar();
-print_r($obj->change(50, 17.25));
+print_r($obj->change($value[0], $value[1]));
